@@ -1,0 +1,33 @@
+<h1>Listing All Tests for <%= @user.first_name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test</th>
+      <th>Laboratory</th>
+      <th>Doctor</th>
+      <th>Test date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_tests.each do |user_test| %>
+      <tr>
+        <td><%= user_test.test.full_name %></td>
+        <td><%= user_test.laboratory.name %></td>
+        <td><%= user_test.doctor_id %></td>
+        <td><%= user_test.test_date %></td>
+        <td><%= link_to 'Show', user_user_test_path(@user, user_test) %></td>
+        <td><%= link_to 'Edit', edit_user_user_test_path(@user, user_test) %></td>
+        <td><%= link_to 'Destroy', user_user_test_path(@user, user_test), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Input a new test', new_user_user_test_path %>

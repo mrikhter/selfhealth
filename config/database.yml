@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: selfhealth_development
+  pool: 5
+  username: masharikhter
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: selfhealth_test
+  username: masharikhter
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: selfhealth_production
+  username: masharikhter
+  password:

@@ -1,0 +1,29 @@
+<h1>Listing results</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Amount</th>
+      <th>Units</th>
+      <th>Normal Range</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.item.full_name %></td>
+        <td><%= result.amount %></td>
+        <td><%= result.item.units %></td>
+        <td><%= result.item.normal_ranges.first.low %> - <%= result.item.normal_ranges.first.high %></td>
+        <td><%= out_of_range?(result) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back to My Tests', user_user_tests_path %>
+<%= link_to 'New Result', new_user_user_test_result_path %>

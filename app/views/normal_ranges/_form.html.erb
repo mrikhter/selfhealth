@@ -1,0 +1,44 @@
+<%= form_for([:test, :item, @normal_range]) do |f| %>
+  <% if @normal_range.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@normal_range.errors.count, "error") %> prohibited this normal_range from being saved:</h2>
+
+      <ul>
+      <% @normal_range.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @normal_range.item.depends_on_gender? %>
+    <div class="field">
+      <%= f.label :gender %><br>
+      <%= f.select(:gender, %w{Male Female}, :prompt => "select gender") %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :low %><br>
+    <%= f.number_field :low %>
+  </div>
+  <div class="field">
+    <%= f.label :high %><br>
+    <%= f.number_field :high %>
+  </div>
+  <div class="field">
+    <%= f.label :laboratory_id %><br>
+    <%= collection_select(:normal_range, :laboratory_id, Laboratory.all, :id, :name, :prompt => "select lab") %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

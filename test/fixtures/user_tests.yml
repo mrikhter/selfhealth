@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  test_id: 1
+  laboratory_id: 1
+  doctor_id: 1
+  test_date: 2014-02-03
+
+two:
+  user_id: 1
+  test_id: 1
+  laboratory_id: 1
+  doctor_id: 1
+  test_date: 2014-02-03

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @item.test.full_name %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @item.full_name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @item.short_name %>
+</p>
+
+<p>
+  <strong>Depends on age:</strong>
+  <%= @item.depends_on_age %>
+</p>
+
+<p>
+  <strong>Depends on gender:</strong>
+  <%= @item.depends_on_gender %>
+</p>
+
+<p>
+  <strong>Units:</strong>
+  <%= @item.units %>
+</p>
+
+<%= link_to 'Edit', edit_test_item_path(@test, @item) %> |
+<%= link_to 'Back', test_items_path %>
+<%= link_to 'View Normal Ranges', test_item_normal_ranges_path(@test, @item) %>
+<%= link_to 'New Normal Range', new_test_item_normal_range_path(@test, @item) %>

@@ -1,0 +1,33 @@
+<%= form_for([:user, @user_test]) do |f| %>
+  <% if @user_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_test.errors.count, "error") %> prohibited this user_test from being saved:</h2>
+
+      <ul>
+      <% @user_test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :test_id %><br>
+    <%= collection_select(:user_test, :test_id, Test.all, :id, :full_name, :prompt => "Select the test") %>
+  </div>
+  <div class="field">
+    <%= f.label :laboratory_id %><br>
+    <%= collection_select(:user_test, :laboratory_id, Laboratory.all, :id, :name, :prompt => "Select the lab") %>
+  </div>
+  <div class="field">
+    <%= f.label :doctor_id %><br>
+    <%= f.number_field :doctor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :test_date %><br>
+    <%= f.date_field :test_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

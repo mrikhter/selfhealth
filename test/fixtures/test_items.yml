@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_id: 1
+  full_name: MyString
+  short_name: MyString
+  depends_on_age: false
+  depends_on_gender: false
+  units: MyString
+  low_range: 1
+  high_range: 1
+  laboratory_id: 1
+  start_date: 2014-02-02
+  end_date: 2014-02-02
+
+two:
+  test_id: 1
+  full_name: MyString
+  short_name: MyString
+  depends_on_age: false
+  depends_on_gender: false
+  units: MyString
+  low_range: 1
+  high_range: 1
+  laboratory_id: 1
+  start_date: 2014-02-02
+  end_date: 2014-02-02
