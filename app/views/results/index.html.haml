@@ -1,0 +1,22 @@
+%h1 Test Results
+%table
+  %thead
+    %tr
+      %th Item
+      %th Amount
+      %th Units
+      %th Normal Range
+      %th Result
+      %th Graph
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= result.item_full_name
+        %td= result.amount
+        %td= result.item_units
+        %td  #{result.item_low_normal_range} - #{result.item_high_normal_range }
+        %td= result.out_of_range?
+        %td.graph{:id => "result#{result.id}"}
+
+= link_to 'Back to My Tests', user_tests_path
+= link_to 'Edit Results', edit_user_test_result_path(@user_test, @results)

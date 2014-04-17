@@ -1,0 +1,66 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Fanwood+Text);
+
+nav.navbar {
+  background-color: white;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  font-family: Montserrat;
+  margin-bottom:0;
+
+  .container-fluid .navbar-brand {
+    margin-left: 0;
+  }
+
+
+  ul.navbar-nav {
+    font-family: Montserrat;
+    text-transform: uppercase;
+
+    a {
+      color: black;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
+    }
+
+    a:hover {
+      border-left: 2px solid #0DFFAF;
+      border-right: 2px solid #0DFFAF;
+    }
+
+    .open {
+      a:focus {
+        background-color:white;
+        border-left: 2px solid #0DFFAF;
+        border-right: 2px solid #0DFFAF;
+      }
+    }
+
+    ul.dropdown-menu {
+      li {
+        a {
+        }
+
+        a:hover {
+          background-color:white;
+        }
+      }
+    }
+  }
+
+  a {
+    background-color: white;
+    border: none;
+    color: black;
+  }
+
+  a.navbar-brand {
+    color:black;
+    font-family: Fanwood Text;
+    font-size: 20px;
+  }
+  
+  a.navbar-brand:hover {
+    color: #0DFFAF;
+  }
+}

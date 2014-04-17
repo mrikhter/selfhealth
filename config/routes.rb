@@ -1,27 +1,46 @@
 Selfhealth::Application.routes.draw do
+  root :to => "pages#home"
+
   
-  get "about" => "pages#about", :as => "about"
-  get "contact" => "pages#contact", :as => "contact"
+  # get "login" => "sessions#new", :as => "login"
+  # get "logout" => "sessions#destroy", :as => "logout"
+  
+  controller :sessions do
+    get "login" => :new, :as => "login"
+    post "login" => :create
+    delete "logout" => :destroy, :as => "logout"
+  end
+  
+  resources :users, :except => [:new, :edit]
+  get "signup" => "users#new", :as => "signup"
+  get "profile" => "users#edit", :as => "edit_profile"
+  
+  resources :user_tests do
+    resources :results
+  end
+
+  controller :pages do
+    get "home" => :home, :as => "home"
+    get "welcome" => :welcome, :as => "welcome"
+    get "about" => :about, :as => "about"
+    get "contact" => :contact, :as => "contact"
+  end
   
   resources :tests do
     resources :items do
+      collection do
+        post 'edit_multiple'
+        put 'update_multiple'
+      end
       resources :normal_ranges
     end
   end
 
   resources :laboratories 
 
-  resources :users do
-    resources :user_tests do
-      resources :results
-    end
-  end
+  match "compare" => "compare#compare", via: [:get, :post]
+  
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

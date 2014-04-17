@@ -1,0 +1,17 @@
+%h1 New Test Items for #{@test.full_name}
+
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Short Name
+      %th Depends on Age?
+      %th Depends on Gender?
+      %th Units
+      %th
+  %tbody
+    %tr
+      = render 'form'
+      %td Remove
+
+= link_to '< Back', test_items_path

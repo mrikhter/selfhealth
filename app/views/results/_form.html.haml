@@ -1,0 +1,25 @@
+= form_for([@user_test, @result]) do |f|
+  - if @result.errors.any?
+    %div#error_explanation
+      %h2 #{pluralize(@result.errors.count, "error")} prohibited this result from being saved:
+      %ul
+        - @result.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table
+    %thead
+      %tr
+        %th Item
+        %th Amount
+        %th Units
+    %tbody
+      - @items.each do |item|
+        = hidden_field_tag('result[]item_id', item.id)
+        %tr
+          %td= item.full_name 
+          %td= text_field_tag('result[]amount')
+          %td= item.units
+
+  %div.actions
+    = f.submit "Save Test"
+

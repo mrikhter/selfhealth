@@ -1,0 +1,24 @@
+.col-md-7
+  %h1 Users
+  = link_to '+ New User', new_user_path
+
+
+  %table.table
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Email
+        %th Age
+        %th Zip
+        %th 
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.email
+          %td= user.age
+          %td= user.zip
+          %td= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+          

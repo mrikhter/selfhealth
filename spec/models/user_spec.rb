@@ -18,9 +18,6 @@ describe User do
       expect(user).to be_invalid
     end
 
-
-
-
     describe '#set_age' do
       it 'calculates and saves records age' do
         user = FactoryGirl.create(:user, :dob => Date.parse("1986-01-20"))

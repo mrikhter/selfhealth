@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203211429) do
+ActiveRecord::Schema.define(version: 20140221200742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20140203211429) do
     t.string   "gender"
     t.integer  "low_age"
     t.integer  "high_age"
-    t.integer  "low"
-    t.integer  "high"
+    t.float    "low"
+    t.float    "high"
     t.integer  "laboratory_id", null: false
     t.date     "start_date"
     t.date     "end_date"
@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 20140203211429) do
 
   create_table "tests", force: true do |t|
     t.string   "full_name"
-    t.string   "short_name"
     t.integer  "cpt_code",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "short_name"
   end
 
   create_table "user_tests", force: true do |t|
@@ -86,15 +86,18 @@ ActiveRecord::Schema.define(version: 20140203211429) do
   add_index "user_tests", ["user_id"], name: "index_user_tests_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first_name", null: false
-    t.string   "last_name",  null: false
-    t.string   "email",      null: false
-    t.string   "gender",     null: false
-    t.date     "dob",        null: false
-    t.integer  "age",        null: false
-    t.integer  "zip",        null: false
+    t.string   "first_name",                    null: false
+    t.string   "last_name",                     null: false
+    t.string   "email",                         null: false
+    t.string   "gender",                        null: false
+    t.date     "dob",                           null: false
+    t.integer  "age",                           null: false
+    t.integer  "zip",                           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.boolean  "admin",         default: false
   end
 
   add_foreign_key "items", "tests", :name => "items_test_id_fk", :dependent => :delete

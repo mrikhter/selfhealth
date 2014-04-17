@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_test.user_id %>
+</p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @user_test.test.full_name %>
+</p>
+
+<p>
+  <strong>Laboratory:</strong>
+  <%= @user_test.laboratory.name %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @user_test.doctor_id %>
+</p>
+
+<p>
+  <strong>Test date:</strong>
+  <%= @user_test.test_date %>
+</p>
+
+= render "results/show"
+
+= link_to 'Edit', edit_user_test_path(@user_test)
+= link_to 'Back', user_tests_path
+= link_to 'See/Edit the Results', user_test_results_path(@user_test)
+

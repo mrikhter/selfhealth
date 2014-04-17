@@ -1,0 +1,20 @@
+%h1 Laboratories
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      - if current_user.admin?
+        %th
+        %th
+
+  %tbody
+    - @laboratories.each do |laboratory|
+      %tr
+        %td= laboratory.name
+        - if current_user.admin?
+          %td= link_to 'Edit', edit_laboratory_path(laboratory)
+          %td= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' }
+
+- if current_user.admin?
+  = link_to 'New Laboratory', new_laboratory_path

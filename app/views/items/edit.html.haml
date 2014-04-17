@@ -1,0 +1,15 @@
+%h1 Edit
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Short Name
+      %th Depends on Age?
+      %th Depends on Gender?
+      %th Units
+      %th
+  %tbody
+    %tr
+      = render 'form'
+
+= link_to '< Back', test_items_path

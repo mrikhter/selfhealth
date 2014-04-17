@@ -1,0 +1,95 @@
+
+<script type="text/javascript">
+
+  var dataset = <%= raw(@results) %>
+
+  
+
+  var margin = {top: 30, right: 20, bottom: 30, left: 50},
+  width = 600 - margin.left - margin.right,
+  height = 270 - margin.top - margin.bottom;
+
+  //var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+  var xScale = d3.time.scale()
+    .domain([function(d) {return d.date}, function(d) {return d.date}])
+    .range([0, width]);
+  var yScale = d3.scale.linear().range([height, 0]);
+
+  var xAxis = d3.svg.axis().scale(xScale)
+    .orient("bottom").ticks(5)
+    .tickFormat(d3.time.format("%m-%d-%Y"));
+
+  // var xLine = d3.svg.axis().scale(x)
+  //   .orient("bottom").ticks(0).tickSize(0);
+
+  var yAxis = d3.svg.axis().scale(yScale)
+    .orient("left").ticks(5); 
+
+  var parseDate = d3.time.format("%Y-%m-%d").parse;
+  var mindate = parseDate("01-2000"),
+      maxdate = parseDate("01-2015");
+
+  var lineFunction = d3.svg.line()
+    .x(function(d) { return parseDate(d.date); })
+    .y(function(d) { return d.amount; })
+    .interpolate("linear");
+
+  var valueline = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.amount); });
+
+  var maxline = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.high); });
+
+  var minline = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.low); });
+
+  
+  d3.select("body").append("div").selectAll("div")
+    .data(dataset) // top level data-join
+  .enter().append("div")
+    .each(function() {
+      var div = d3.select(this);
+
+      div.append("h4")
+          .text(function(d) { return d.item; });
+
+      var svg = div.append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+
+      
+      svg.append("svg:g")         // Add the X Axis
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+
+      svg.append("svg:g")         // Add the Y Axis
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Amount");
+
+      svg.selectAll("svg").data(function(d) { return d.results; }) // second level data-join
+        .enter()
+        .append("circle")
+          .attr("cx", function (d) { return xScale(parseDate(d.date)); })
+          .attr("cy", function (d) { return d.amount; })
+          .attr("r", 5)
+          .style("fill", "purple")
+
+      svg.selectAll("svg").data(function(d) { return d.normal; }) // second level data-join
+        .enter().append("li")
+          .text(function(d) { return d.low + " - " + d.high + ": " + d.date; });
+    });
+
+
+
+  
+</script>

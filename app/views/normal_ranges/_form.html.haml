@@ -1,0 +1,36 @@
+= form_for([@test, @item, @normal_range]) do |f|
+  - if @normal_range.errors.any?
+    %div#error_explanation
+      %h2 #{pluralize(@normal_range.errors.count, "error")} prohibited this normal_range from being saved:
+      %ul
+        - @normal_range.errors.full_messages.each do |msg|
+          %li= msg
+
+  - if @normal_range.item.depends_on_gender?
+    = f.label :gender
+    = f.select(:gender, %w{Male Female}, :prompt => "select gender")
+  - if @normal_range.item.depends_on_age?
+    = f.label :low_age
+    = f.text_field :low_age
+
+    = f.label :high_age
+    = f.text_field :high_age
+    
+  = f.label :low
+  = f.text_field :low
+
+  = f.label :high
+  = f.text_field :high
+
+  = f.label :laboratory_id
+  = collection_select(:normal_range, :laboratory_id, Laboratory.all, :id, :name, :prompt => "select lab")
+
+
+  = f.label :start_date
+  = f.date_field :start_date
+
+
+  = f.label :end_date
+  = f.date_field :end_date
+
+  = f.submit

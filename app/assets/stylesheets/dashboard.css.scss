@@ -1,0 +1,35 @@
+.dashboard {
+  max-height: 100%;
+  text-align:center;
+
+  .col-md-6 {
+    height: 46.3%;
+    padding-top: 10px;
+  }
+
+  .left {
+    border-right: 1px solid black;
+  }
+
+  .bottom {
+    border-top: 1px solid black;
+  }
+
+  h5 {
+    //float:left;
+    display:inline;
+    text-align:center;  
+    margin-top:10px;
+    //text-decoration:underline;
+    border-bottom: 1px solid #0DFFAF;
+  }
+
+  span.detail {
+    //float:right;
+  }
+
+  a {
+    color: #0DFFAF;
+  }
+
+}

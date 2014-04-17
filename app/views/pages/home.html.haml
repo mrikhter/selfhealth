@@ -1,0 +1,16 @@
+.home
+  #top
+    %h2 Take control of your health.
+  - if !current_user
+    .form
+      %h1 Self Health
+      #signup
+        = link_to "Sign Up", signup_path
+      = link_to "Log In", login_path
+  #bottom
+    .col-md-5
+      %h3 Be proactive about your health
+      %p.info There is nothing more important than your health. Literally. So why do so many of us leave it entirely in the hands of someone else? It's time to pay attention! 
+    .col-md-2.middle
+    .col-md-5
+      %h3 Some More About

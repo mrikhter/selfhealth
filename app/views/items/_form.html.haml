@@ -1,0 +1,16 @@
+= form_for([@test, @item]) do |f|
+  - if @item.errors.any?
+    %div#error_explanation
+      %h2 #{pluralize(@item.errors.count, "error")} prohibited this test_item from being saved:
+      %ul
+        - @item.errors.full_messages.each do |msg|
+          %li= msg
+
+
+  %td= f.text_field :full_name
+  %td= f.text_field :short_name
+  %td= f.select :depends_on_age, [["Yes", true], ["No", false]], :include_blank => true
+  %td= f.select :depends_on_gender, [["Yes", true], ["No", false]], :include_blank => true
+  %td= f.text_field :units
+
+  = f.submit

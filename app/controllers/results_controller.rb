@@ -1,36 +1,37 @@
 class ResultsController < ApplicationController
-  before_action :set_result, only: [:show, :edit, :update, :destroy]
+  before_action :set_result, only: [:update, :destroy]
+  before_action :set_user_test, only: [:index, :new, :edit, :create]
 
   def index
-    @user = User.find(params[:user_id])
-    @user_test = UserTest.find(params[:user_test_id])
-    @items = UserTest.find(params[:user_test_id]).test.items
+    @items = @user_test.test.items
     @results = @user_test.results
-  end
-
-  def show
-    @user = User.find(params[:user_id])
-    @user_test = UserTest.find(params[:user_test_id])
+    @results_json = @results.map {|result| {:id => result.id, :amount => result.amount, :units => result.item.units, :low_range => result.item.normal_ranges.first.low, :high_range => result.item.normal_ranges.first.high }}
+    respond_to do |format|
+      format.html
+      format.json { render :json => @results_json }
+      format.js
+    end
   end
 
   def new
-    @items = UserTest.find(params[:user_test_id]).test.items
-    @user = User.find(params[:user_id])
-    @user_test = UserTest.find(params[:user_test_id])
+    @items = @user_test.items
     @result = @user_test.results.new
     @results = @items.count.times {@user_test.results.build}
   end
 
   def edit
+    # binding.pry
+    # @user = User.find(params[:user_id])
+    @result = @user_test.results
+    @results = @user_test.results
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @user_test = UserTest.find(params[:user_test_id])
+    @user = current_user
     result_params[:result].each do |record|
       @user_test.results.create(record)
     end
-    redirect_to [@user, @user_test], notice: 'Results were successfully created.' 
+    redirect_to user_test_results_path, notice: 'Results were successfully created.' 
     # @result = @user_test.results.new(result_params[:result])
 
     # respond_to do |format|
@@ -65,12 +66,14 @@ class ResultsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_result
       @result = Result.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_user_test
+      @user_test = UserTest.find(params[:user_test_id])
+    end
+
     def result_params
       params.permit(:user_test_id, :result => [:item_id, :amount])
     end

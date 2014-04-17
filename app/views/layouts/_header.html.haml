@@ -1,0 +1,40 @@
+- if current_user
+  %nav.navbar.navbar-default{:role => "navigation"}
+    %div.container-fluid
+      %div.navbar-header
+        %button{:type=>"button", :class=>"navbar-toggle", :"data-toggle"=>"collapse", :"data-target"=>"#bs-example-navbar-collapse-1"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+
+        = link_to "Self Health: #{current_user.full_name}", welcome_path, :class=> "navbar-brand"
+
+      %div{:class => "collapse navbar-collapse", :id => "bs-example-navbar-collapse-1"}
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            = link_to "Blood Work", "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"
+            %ul.dropdown-menu
+              %li= link_to 'My Tests', user_tests_path
+              %li= link_to 'Add a Test', new_user_test_path
+              %li= link_to 'Supported Tests', tests_path
+
+          - if current_user.admin?
+            %li.dropdown
+              = link_to "Admin", "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"
+              %ul.dropdown-menu
+                %li= link_to 'All Tests', tests_path
+                %li= link_to 'All Labs', laboratories_path
+                %li= link_to 'All Users', users_path
+
+
+          %li= link_to 'Profile', edit_profile_path
+          
+          %li.dropdown
+            = link_to "Dropdown", "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"
+
+            %ul.dropdown-menu
+              %li= link_to 'About', about_path
+              %li= link_to 'Contact', contact_path
+              %li.divider
+              %li= link_to 'Log Out', logout_path

@@ -1,0 +1,31 @@
+%h1 Listing #{@test.full_name} Test Items
+
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Short Name
+      %th Depends on Age?
+      %th Depends on Gender?
+      %th Units
+      - if current_user.admin?
+        %th
+      %th
+
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.full_name
+        %td= item.short_name
+        %td= item.depends_on_age
+        %td= item.depends_on_gender
+        %td= item.units
+        - if current_user.admin?
+          %td= link_to 'Edit', edit_test_item_path(@test, item)
+        %td= link_to 'Normal Ranges', test_item_normal_ranges_path(@test, item)
+
+- if current_user.admin?
+  = link_to '+ New Test item', new_test_item_path
+%br
+= link_to '<  Back to All Tests', tests_path
+

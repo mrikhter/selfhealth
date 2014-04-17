@@ -1,0 +1,11 @@
+.login
+  .form
+    %h1 Welcome Back
+    = form_tag login_path do
+      %div.field
+        = text_field_tag :email, params[:email], :placeholder => "Email"
+      %div.field
+        = password_field_tag :password, nil,  placeholder: "Password"
+      %div.actions
+        = submit_tag "Log In"
+    %p Not a member? #{link_to "Sign Up", signup_path}

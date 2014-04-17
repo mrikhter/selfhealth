@@ -1,0 +1,41 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login {
+    text-align: center;
+    background-image: url('vetruvian.jpg');
+    height:100%;
+
+  .form {
+    width: 300px;
+    height: 280px;
+    padding: 20px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color:black;
+    color:black;
+    font-family: Fanwood Text;
+    font-size:15px;
+
+    h1 {
+      color:white;
+      margin-top:5px
+    }
+
+
+    a {
+      color:#0DFFAF;
+    }
+
+    p {
+      color:white;
+    }
+  }
+
+  
+}

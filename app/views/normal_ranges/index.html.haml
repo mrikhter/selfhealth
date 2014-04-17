@@ -1,0 +1,38 @@
+%h1 #{@item.full_name} Normal Ranges
+
+%table.table
+  %thead
+    %tr
+      - if @item.depends_on_gender?
+        %th Gender
+      %th Low End
+      %th High End
+      %th Laboratory
+      / %th Start Date
+      / %th End Date
+      - if current_user.admin?
+        %th
+        %th
+
+  %tbody
+    - @normal_ranges.each do |normal_range|
+      %tr
+        - if @item.depends_on_gender?
+          %td= normal_range.gender
+        - if @item.depends_on_age?
+          %td= normal_range.low_age
+          %td= normal_range.high_age
+        %td= normal_range.low
+        %td= normal_range.high
+        %td= normal_range.laboratory.name
+        / %td= normal_range.start_date
+        / %td= normal_range.end_date
+        - if current_user.admin?
+          %td= link_to 'Edit', edit_test_item_normal_range_path(@test, @item, normal_range)
+          %td= link_to 'Destroy', test_item_normal_range_path(@test, @item, normal_range), method: :delete, data: { confirm: 'Are you sure?' }
+
+- if current_user.admin?
+  = link_to '+ New Normal range', new_test_item_normal_range_path(@test, @item)
+%br
+= link_to '< Back to Test Items', test_items_path(@test)
+

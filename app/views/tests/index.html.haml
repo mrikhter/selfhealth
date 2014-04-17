@@ -1,0 +1,28 @@
+%div.notice= flash[:notice]
+
+%h1 Supported Tests
+
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Short Name
+      %th CPT Code
+      %th 
+      - if current_user.admin?
+        %th
+        %th
+
+  %tbody
+    - @tests.each do |test|
+      %tr
+        %td= test.full_name
+        %td= test.short_name
+        %td= test.cpt_code
+        %td= link_to "View Test Items", test_items_path(test)
+        - if current_user.admin?
+          %td= link_to 'Edit', edit_test_path(test)
+          %td= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' }
+
+- if current_user.admin?
+  = link_to 'New Test', new_test_path

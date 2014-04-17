@@ -1,3 +1,60 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signup {
+    text-align: center;
+    background-image: url('vetruvian.jpg');
+    height:100%;
+
+    
+
+  .form {
+    //border: 1px solid rgb(0,59,220);
+    width: 300px;
+    height: 600px;
+    padding: 20px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color:black;
+    color:black;
+    font-family: Fanwood Text;
+    font-size:15px;
+
+    h1 {
+      color:white;
+      margin-top:5px
+    }
+
+    a {
+      color:#0DFFAF;
+    }
+
+    p {
+      color:white;
+    }
+
+    select {
+      width:100%;
+      padding:7px;
+      border-radius:0px;
+      //color: #9C9C97;
+      font-family: Fanwood Text;
+      font-size:15px;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      border:3px solid black;
+    }
+
+    select:focus {
+      border: 3px solid #0DFFAF;
+    }
+  }
+
+  
+}
