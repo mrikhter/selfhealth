@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   before_save :set_age
   before_save :encrypt_password
 
-  scope :ordered, order("last_name")
+  scope :ordered, -> { order(:last_name) }
+
+  enum :gender => [:Female, :Male]
 
   def full_name
     # first_name.nil? && last_name.nil? ? nil : [first_name, last_name].compact.join(" ")

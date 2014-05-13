@@ -7,6 +7,10 @@
           %li= msg
 
   %div.field
+    = f.label :test_type
+    = collection_select(:test, :test_type_id, TestType.all, :id, :name, :prompt => "select test type")
+
+  %div.field
     = f.label :full_name
     = f.text_field :full_name
 

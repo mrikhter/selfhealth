@@ -1,4 +1,6 @@
 Selfhealth::Application.routes.draw do
+  resources :test_types
+
   root :to => "pages#home"
 
   
@@ -8,15 +10,21 @@ Selfhealth::Application.routes.draw do
   controller :sessions do
     get "login" => :new, :as => "login"
     post "login" => :create
-    delete "logout" => :destroy, :as => "logout"
+    # delete "logout" => :destroy, :as => "logout"
+    get "logout" => :destroy, :as => "logout"
   end
   
-  resources :users, :except => [:new, :edit]
+  resources :users, :except => [:edit]
   get "signup" => "users#new", :as => "signup"
   get "profile" => "users#edit", :as => "edit_profile"
   
   resources :user_tests do
-    resources :results
+    resources :results do 
+      collection do
+        get 'edit_multiple'
+        put 'update_multiple'
+      end
+    end
   end
 
   controller :pages do
@@ -25,6 +33,7 @@ Selfhealth::Application.routes.draw do
     get "about" => :about, :as => "about"
     get "contact" => :contact, :as => "contact"
   end
+  resources :test_types
   
   resources :tests do
     resources :items do
@@ -35,6 +44,7 @@ Selfhealth::Application.routes.draw do
       resources :normal_ranges
     end
   end
+
 
   resources :laboratories 
 

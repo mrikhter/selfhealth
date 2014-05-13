@@ -1,28 +1,36 @@
-.col-md-4
-  %h1 My tests
+.col-xs-2
+  %h2 Search/Filters
+  %p To Do
+.col-xs-8
+  %h2 My Tests
 
   = link_to '+ Add a Test', new_user_test_path
   = form_tag compare_path, :url => compare_path , :method => 'POST'
   - if @user_tests.any?
-    %table.table
-      %thead
-        %tr
-          %th Date
-          %th Test
-          %th Lab
-          %th Doctor
-          %th
-          %th
-          %th Compare
-      %tbody
-        - @user_tests.each do |user_test|
-          %tr
-            %td= user_test.test_date
-            %td= user_test.test.full_name
-            %td= user_test.laboratory.name
-            %td= user_test.doctor_id
-            %td= link_to 'Show', user_test_results_path(user_test)
-            / %td= link_to 'Edit', edit_user_user_test_path(current_user, user_test)
-            %td= link_to 'Destroy', user_test_path(user_test), method: :delete, data: { confirm: 'Are you sure?' }
-            %td= check_box_tag('compare[]', user_test.id)
-    = submit_tag("Compare Selected")
+    - user_test_test_types(current_user).each do |test_type, user_tests|
+      %h3= test_type.name
+      - user_test_tests(user_tests).each do |test, user_tests|
+        %h4= test.full_name
+        %table.table
+          %thead
+            %tr
+              %th Date
+              %th Test
+              - if test_type.name == "Blood Work"
+                %th Lab
+                %th Doctor
+              %th
+              %th
+              %th Compare
+          %tbody
+            - user_tests.each do |user_test|
+              %tr
+                %td= user_test.test_date
+                %td= user_test.test_full_name
+                - if test_type.name == "Blood Work"
+                  %td= user_test.laboratory.name
+                  %td= user_test.doctor_id
+                %td= link_to 'Show', user_test_results_path(user_test)
+                %td= link_to 'Destroy', user_test_path(user_test), method: :delete, data: { confirm: 'Are you sure?' }
+                %td= check_box_tag('compare[]', user_test.id)
+        = submit_tag("Compare Selected")

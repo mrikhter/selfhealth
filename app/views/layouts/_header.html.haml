@@ -23,6 +23,7 @@
             %li.dropdown
               = link_to "Admin", "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"
               %ul.dropdown-menu
+                %li= link_to 'All Test Types', test_types_path
                 %li= link_to 'All Tests', tests_path
                 %li= link_to 'All Labs', laboratories_path
                 %li= link_to 'All Users', users_path

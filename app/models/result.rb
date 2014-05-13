@@ -1,8 +1,11 @@
 class Result < ActiveRecord::Base
   belongs_to :user_test
-  belongs_to :item
+  belongs_to :item#, :order => "full_name DESC"
 
   delegate :full_name, :short_name, :units, :to => :item, :prefix => true
+
+    # scope :ordered, :joins => :item,
+    #       :order => "items.full_name ASC"
 
   def item_low_normal_range
     item.low_normal_range

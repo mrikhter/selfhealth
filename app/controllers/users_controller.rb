@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @users = User.all.ordered
+      # binding.pry
+      @users = User.ordered
     else
       redirect_to welcome_path
     end
@@ -15,7 +16,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    u = user_params
+    u["gender"] = u["gender"].to_i
+    @user = User.new(u)
     if @user.save
       session[:user_id] = @user.id
       redirect_to welcome_path, notice: 'Signed Up!'
@@ -25,7 +28,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    # binding.pry
+    u = user_params
+    u["gender"] = u["gender"].to_i
+    if @user.update(u)
       redirect_to welcome_path, notice: 'User was successfully updated.'
     else
       render action: 'edit'

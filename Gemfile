@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
 
 gem 'bcrypt-ruby', '~> 3.1.2', :require=>'bcrypt'
-gem 'coffee-rails', '~> 4.0.0'
+
 gem 'd3_rails'
 gem 'foreigner'
 gem 'haml'
@@ -11,8 +11,13 @@ gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'pg'
 gem 'pry'
-gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
+
+gem 'coffee-rails', '~> 4.0.0'
+# gem "less-rails"
+gem 'sass-rails', '~> 4.0.0'
+# gem "therubyracer"
+gem "twitter-bootstrap-rails", github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do

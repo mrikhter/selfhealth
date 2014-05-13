@@ -21,7 +21,11 @@
     = f.date_field :dob
 
   %div.field
-    = f.select(:gender, %w{Male Female}, :prompt => "Select Gender")
+    / = f.select :gender, options_for_select(User.genders.collect {|gender| [gender[0].titleize, gender[0]]}, :selected => @user.gender), :prompt => "Select Gender"
+
+    / # = f.select :gender, options_from_collection_for_select(User.genders, :key, :key, :selected => @user.gender), :prompt => "Select Gender"
+
+    = f.select :gender, options_for_select(User.genders, :selected => User.genders[@user.gender]), :prompt => "Select Gender"
 
   %div.field
     = f.number_field :zip, :placeholder => "ZIP"

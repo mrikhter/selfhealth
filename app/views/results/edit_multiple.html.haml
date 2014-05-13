@@ -1,0 +1,19 @@
+%h1 Editing results
+
+= form_for :result, :url => update_multiple_user_test_results_path, :html => { :method => :put } do |f|
+
+  %table
+    %thead
+      %tr
+        %th Item
+        %th Amount
+        %th Units
+    %tbody
+      - @results.each do |result|
+        = fields_for "result[]", result do |result_fields|
+          %tr
+            %td= f.label result.item_full_name
+            %td= result_fields.text_field :amount
+            %td= result.item_units
+  = f.submit
+= link_to 'Back', user_test_results_path

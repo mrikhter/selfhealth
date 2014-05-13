@@ -7,14 +7,18 @@
           %li= msg
 
   %div.field
+    = f.label :test_type_id
+    = collection_select(:user_test, :test_id, TestType.all, :id, :name, :prompt => "Any")
+
+  %div.field
     = f.label :test_id
     = collection_select(:user_test, :test_id, Test.all, :id, :full_name, :prompt => "Select the test")
 
-  %div.field
+  %div.field.hide
     = f.label :laboratory_id
     = collection_select(:user_test, :laboratory_id, Laboratory.all, :id, :name, :prompt => "Select the lab")
 
-  %div.field
+  %div.field.hide
     = f.label :doctor_id
     = f.number_field :doctor_id
 

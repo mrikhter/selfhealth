@@ -2,8 +2,9 @@ class CompareController < ApplicationController
   respond_to :html, :json
 
   def compare
-    # binding.pry
-    @tests = UserTest.find(params[:compare], :order => "test_date")
+    @tests = UserTest.find(params[:compare])
+    #this is no good bc ordering all the tests first
+
     # @results = @tests.map do |test|
     #   { :test_date => test.test_date, :results => test.results.map do |result|
     #     { :name => result.item.full_name, :amount => result.amount }

@@ -38,10 +38,11 @@ class TestsController < ApplicationController
 
   private
     def set_test
-      @test = Test.find_by_cpt_code(params[:id])
+      @test = Test.find(params[:id])
+      # @test = Test.find_by_cpt_code(params[:id])
     end
 
     def test_params
-      params.require(:test).permit(:full_name, :short_name, :cpt_code)
+      params.require(:test).permit(:full_name, :short_name, :cpt_code, :test_type_id)
     end
 end

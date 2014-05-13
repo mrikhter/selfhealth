@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_test, except: [:destroy]
 
   def index
-    @items = @test.items.all
+    @items = @test.items.ordered
   end
 
   def new
@@ -50,7 +50,8 @@ class ItemsController < ApplicationController
     end
 
     def set_test
-      @test = Test.find_by_cpt_code(params[:test_id])
+      @test = Test.find(params[:test_id])
+      # @test = Test.find_by_cpt_code(params[:test_id])
     end
 
     def item_params

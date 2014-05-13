@@ -2,7 +2,8 @@ class UserTestsController < ApplicationController
   before_action :set_user_test, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user_tests = current_user.user_tests.order("test_date DESC")
+    # binding.pry
+    @user_tests = current_user.user_tests
   end
 
   def show

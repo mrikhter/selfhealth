@@ -1,9 +1,9 @@
-= form_for([@user_test, @result]) do |f|
-  - if @result.errors.any?
+= form_for([@user_test, @results]) do |f|
+  - if @results.errors.any?
     %div#error_explanation
-      %h2 #{pluralize(@result.errors.count, "error")} prohibited this result from being saved:
+      %h2 #{pluralize(@results.errors.count, "error")} prohibited this result from being saved:
       %ul
-        - @result.errors.full_messages.each do |msg|
+        - @results.errors.full_messages.each do |msg|
           %li= msg
 
   %table
@@ -21,5 +21,4 @@
           %td= item.units
 
   %div.actions
-    = f.submit "Save Test"
-
+    = f.submit

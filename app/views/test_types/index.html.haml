@@ -1,0 +1,5 @@
+= link_to "new", new_test_type_path
+
+%ul
+  - @test_types.each do |test_type|
+    %li= test_type.name

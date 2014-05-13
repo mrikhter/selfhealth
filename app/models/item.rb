@@ -4,6 +4,8 @@ class Item < ActiveRecord::Base
   has_many :normal_ranges, dependent: :destroy
   has_many :results
 
+  scope :ordered, -> { order(:full_name) }
+
   def low_normal_range
     normal_ranges.first.low
   end
